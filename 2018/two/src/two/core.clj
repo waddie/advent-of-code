@@ -18,12 +18,11 @@
   [input]
   (loop [current   (first input)
          remaining (rest input)]
-    (let [candidate (first (filter                                              ; match will be a seq of one element, anything else is nil
-                            (fn [candidate]                                     ; data/diff returns [things-only-in-a] [things-only-in-b] [common-elements]
-                              (= 1 (count (filter char? (first candidate)))))   ; for correct answer, [things-only-in-a] will contain one char and a bunch of nils
-                            (map (fn [candidate]                                ; diff current string with every string that follows it
-                                   (data/diff (seq current) (seq candidate)))
-                                 remaining)))]
+    (let [candidate (first (filter (fn [candidate]                                     ; data/diff returns [things-only-in-a] [things-only-in-b] [common-elements]
+                                     (= 1 (count (filter char? (first candidate)))))   ; for correct answer, [things-only-in-a] will contain one char and a bunch of nils
+                                   (map (fn [candidate]                                ; diff current string with every string that follows it
+                                          (data/diff (seq current) (seq candidate)))
+                                        remaining)))]
       (if (seq (last candidate))                                                ; if we got a match, [common-elements] will be a seq
         (apply str (last candidate))                                            ; convert [char] (and one nil) to a string
         (recur (first remaining)

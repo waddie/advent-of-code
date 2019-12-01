@@ -13,24 +13,19 @@
 (defn all-modules
   "Calculate fuel required for mass of all modules."
   [input]
-  (apply +
-         (map
-          fuel-calculation
-          input)))
+  (apply + (map fuel-calculation input)))
 
 (defn all-modules-plus-extra-fuel
   "Calculate fuel required for mass of all modules plus mass of the extra fuel."
   [input]
-  (apply +
-         (map
-          (fn [mass]
-            (loop [extra-fuel (fuel-calculation mass)
-                   total-fuel 0]
-              (if (<= extra-fuel 0)
-                total-fuel
-                (recur (fuel-calculation extra-fuel)
-                       (+ total-fuel extra-fuel)))))
-          input)))
+  (apply + (map (fn [mass]
+                  (loop [extra-fuel (fuel-calculation mass)
+                         total-fuel 0]
+                    (if (<= extra-fuel 0)
+                      total-fuel
+                      (recur (fuel-calculation extra-fuel)
+                             (+ total-fuel extra-fuel)))))
+                input)))
 
 (defn -main
   [& args]
