@@ -6,27 +6,31 @@
   [input]
   (apply + input))
 
+(defn- found-first-number?
+  [possibility already]
+  (and (number? possibility)
+       (nil? already)))
+
 (defn first-duplicate-frequency-reached
   "Return the first frequency reached twice by applying frequency changes repeatedly."
   [input]
-  (let [log (atom {:journal [0]
-                   :duplicate nil})]
-    (while (nil? (:duplicate @log))
-      (doall (map
-              (fn [x]
-                (let [y (+ (last (:journal @log)) x)]
-                  (when (and (nil? (:duplicate @log))
-                             (number? (some #{y} (:journal @log))))
-                    (swap! log #(assoc % :duplicate y)))
-                  (swap! log #(assoc % :journal (conj (:journal %) y)))))
-              input)))
-    (:duplicate @log)))
-
-; (defn first-duplicate-frequency-reached2
-;   "Return the first frequency reached twice by applying frequency changes repeatedly."
-;   [input]
-
-;   (loop [frequencies]))
+  (let [duplicate (atom nil)]
+    (loop [journal [0]]
+      (if (nil? @duplicate)
+        (recur (loop [next-frequency        (first input)
+                      remaining-frequencies (rest input)
+                      journal               journal]
+                 (let [frequency (+ (last journal) next-frequency)]
+                   (when (found-first-number? (some #{frequency} journal)
+                                              @duplicate)
+                     (reset! duplicate frequency))
+                   (if (and (seq remaining-frequencies)
+                            (nil? @duplicate))
+                     (recur (first remaining-frequencies)
+                            (rest remaining-frequencies)
+                            (conj journal frequency))
+                     (conj journal frequency)))))
+        @duplicate))))
 
 (defn -main
   [& args]
