@@ -12,3 +12,14 @@
                                "aabcdd"
                                "abcdee"
                                "ababab"])))))
+
+(deftest examples-part-two
+  (testing "Example for part two."
+    (is (= "fgij"
+           (two.core/common-letters ["abcde"
+                                     "fghij"
+                                     "klmno"
+                                     "pqrst"
+                                     "fguij"
+                                     "axcye"
+                                     "wvxyz"])))))
