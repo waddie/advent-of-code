@@ -6,7 +6,7 @@
   "Return [n x y width height] from claim definition '#n @ x,y: wxh'."
   [claim]
   (map read-string
-       (rest (re-find #"#(\d+) @ (\d+),(\d+): (\d+)x(\d+)$" claim))))
+       (rest (re-find #"^#(\d+) @ (\d+),(\d+): (\d+)x(\d+)$" claim))))
 
 (defn- increment-idx!
   "Increment the number at coordinates x:y in a mutable 2D matrix."
