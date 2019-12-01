@@ -1,0 +1,31 @@
+{
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
+  "settings": {
+    "files.exclude": {},
+    "merge-conflict.autoNavigateNextConflict.enabled": true,
+    "editor.rulers": [80],
+    "editor.tabSize": 2,
+    "editor.detectIndentation": false,
+    "editor.formatOnSave": true,
+    "workbench.colorCustomizations": {
+      "activityBar.background": "#a5b088",
+      "activityBar.activeBorder": "#ecf1f2",
+      "activityBar.foreground": "#15202b",
+      "activityBar.inactiveForeground": "#15202b99",
+      "activityBarBadge.background": "#ecf1f2",
+      "activityBarBadge.foreground": "#15202b",
+      "titleBar.activeBackground": "#8e9c69",
+      "titleBar.inactiveBackground": "#8e9c6999",
+      "titleBar.activeForeground": "#15202b",
+      "titleBar.inactiveForeground": "#15202b99",
+      "statusBar.background": "#8e9c69",
+      "statusBarItem.hoverBackground": "#737e53",
+      "statusBar.foreground": "#15202b"
+    },
+    "peacock.color": "#8e9c69"
+  }
+}
