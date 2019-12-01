@@ -2,18 +2,18 @@
   (:gen-class)
   (:require [clojure.core.matrix :as mat]))
 
-(defn process-claim
+(defn- process-claim
   "Return [n x y width height] from claim definition '#n @ x,y: wxh'."
   [claim]
   (map read-string
        (rest (re-find #"#(\d+) @ (\d+),(\d+): (\d+)x(\d+)$" claim))))
 
-(defn increment-idx!
+(defn- increment-idx!
   "Increment the number at coordinates x:y in a mutable 2D matrix."
   [m x y]
   (mat/mset! m x y (inc (mat/mget m x y))))
 
-(defn apply-claims
+(defn- apply-claims
   "Apply patches to 1000x1000 2D matrix and return the immutable, patched matrix."
   [input]
   (let [fabric (mat/zero-matrix :vectorz 1000 1000)]
