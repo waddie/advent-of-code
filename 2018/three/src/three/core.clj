@@ -2,8 +2,6 @@
   (:gen-class)
   (:require [clojure.core.matrix :as mat]))
 
-(mat/set-current-implementation :vectorz)
-
 (defn process-claim
   "Return [n x y width height] from claim definition '#n @ x,y: wxh'."
   [claim]
@@ -16,16 +14,16 @@
   (mat/mset! m x y (inc (mat/mget m x y))))
 
 (defn apply-claims
-  "Apply patches to 1000x1000 fabric."
+  "Apply patches to 1000x1000 2D matrix and return the immutable, patched matrix."
   [input]
-  (let [fabric (mat/zero-matrix 1000 1000)]
+  (let [fabric (mat/zero-matrix :vectorz 1000 1000)]
     (doseq [claim (map process-claim input)]
       (doseq [x (range (nth claim  1)
                        (+ (nth claim 1) (nth claim 3)))
               y (range (nth claim 2)
                        (+ (nth claim 2) (nth claim 4)))]
         (increment-idx! fabric x y)))
-    fabric))
+    (mat/immutable fabric)))
 
 (defn multiple-patched-inches
   "Total square inches that have been been patched by more than one claim."
