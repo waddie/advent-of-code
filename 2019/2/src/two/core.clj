@@ -29,7 +29,7 @@
       99 (nth program 0))))
 
 (defn search-for-inputs
-  "Find the input values that, given an IntCode program, results in the target number."
+  "Find the input values that, given an IntCode program, result in the target number."
   [input target]
   (first (filter #(== target (:result %))
                  (map (fn [values]
