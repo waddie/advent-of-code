@@ -1,33 +1,33 @@
 (ns two.core
   (:gen-class))
 
-(defn process-opcodes
-  "Run program."
-  [input]
-  (loop [program  input
-         position 0]
-    (let [opcode (nth program position)]
-      (condp == opcode
-        1 (recur (assoc program
-                        (nth program (+ 3 position))
-                        (+ (nth program (nth program (+ 1 position)))
-                           (nth program (nth program (+ 2 position)))))
-                 (+ 4 position))
-        2 (recur (assoc program
-                        (nth program (+ 3 position))
-                        (* (nth program (nth program (+ 1 position)))
-                           (nth program (nth program (+ 2 position)))))
-                 (+ 4 position))
-        99 (nth program 0)))))
-
-(defn input-values
+(defn- input-values
   "Set the input values"
   [input noun verb]
   (-> input
       (assoc 1 noun)
       (assoc 2 verb)))
 
+(defn process-opcodes
+  "Run program."
+  [input]
+  (loop [program input
+         position 0]
+    (condp == (nth program position)
+      1 (recur (assoc program
+                      (nth program (+ 3 position))
+                      (+ (nth program (nth program (+ 1 position)))
+                         (nth program (nth program (+ 2 position)))))
+               (+ 4 position))
+      2 (recur (assoc program
+                      (nth program (+ 3 position))
+                      (* (nth program (nth program (+ 1 position)))
+                         (nth program (nth program (+ 2 position)))))
+               (+ 4 position))
+      99 (nth program 0))))
+
 (defn search-for-inputs
+  "Find the input values that, given an IntCode program, result in the target number."
   [input target]
   (first (filter #(== target (:result %))
                  (map (fn [values]
