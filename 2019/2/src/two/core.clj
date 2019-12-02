@@ -31,9 +31,10 @@
   [input target]
   (first (filter #(== target (:result %))
                  (map (fn [values]
-                        {:result (process-opcodes (input-values input (:noun values) (:verb values)))
-                         :noun (:noun values)
-                         :verb (:verb values)})
+                        (conj values
+                              {:result (process-opcodes (input-values input
+                                                                      (:noun values)
+                                                                      (:verb values)))}))
                       (for [noun (range 100)
                             verb (range 100)]
                         {:noun noun
