@@ -8,21 +8,23 @@
       (assoc 1 noun)
       (assoc 2 verb)))
 
+(defn- arithmetic
+  "Execute arithmetic opcode."
+  [f program position]
+  (assoc program
+         (nth program (+ 3 position))
+         (f (nth program (nth program (+ 1 position)))
+            (nth program (nth program (+ 2 position))))))
+
 (defn process-opcodes
   "Run program."
   [input]
   (loop [program input
          position 0]
     (condp == (nth program position)
-      1 (recur (assoc program
-                      (nth program (+ 3 position))
-                      (+ (nth program (nth program (+ 1 position)))
-                         (nth program (nth program (+ 2 position)))))
+      1 (recur (arithmetic + program position)
                (+ 4 position))
-      2 (recur (assoc program
-                      (nth program (+ 3 position))
-                      (* (nth program (nth program (+ 1 position)))
-                         (nth program (nth program (+ 2 position)))))
+      2 (recur (arithmetic * program position)
                (+ 4 position))
       99 (nth program 0))))
 
