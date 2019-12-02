@@ -2,7 +2,7 @@
   (:gen-class))
 
 (defn- input-values
-  "Set the input values"
+  "Set the input values."
   [input noun verb]
   (-> input
       (assoc 1 noun)
