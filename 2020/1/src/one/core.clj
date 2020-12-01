@@ -7,6 +7,7 @@
 (def input-file "resources/input.txt")
 
 (defn find-pair-equal-to-sum
+  "Return vector containing two numbers from v whose sum equals target."
   [v target]
   (first (for [x v
                :let [input-set (set v)]
@@ -15,9 +16,10 @@
            [x (- target x)])))
 
 (defn find-triplet-equal-to-sum
+  "Return vector containing three numbers from v whose sum equals target."
   [v target]
   (first (for [x v
-               y v
+               y (rest v)
                :let [input-set (set v)]
                :when (and (not= x y)
                           (contains? input-set
