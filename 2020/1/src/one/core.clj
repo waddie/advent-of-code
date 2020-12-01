@@ -1,7 +1,7 @@
 (ns one.core
   (:gen-class)
-  (:require [clojure.string :as string])
-  (:require [clojure.pprint :as pprint]))
+  (:require [clojure.string :as string]
+            [clojure.pprint :as pprint]))
 
 (def target 2020)
 
