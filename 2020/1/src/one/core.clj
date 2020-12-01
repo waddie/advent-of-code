@@ -24,9 +24,7 @@
 
 (defn -main
   [& args]
-  (let [input   (mapv read-string (string/split
-                                 (slurp "resources/input.txt")
-                                 #"\n"))
+  (let [input   (mapv read-string (string/split (slurp "resources/input.txt") #"\n"))
         pair    (find-pair-equal-to-sum input target)
         triplet (find-triplet-equal-to-sum input target)]
 
