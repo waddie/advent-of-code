@@ -8,20 +8,21 @@
 
 (defn find-pair-equal-to-sum
   [v target]
-  (let [input-set (into #{} v)]
-    (filter #(contains? input-set
-                        (- target %))
-            v)))
+  (let [input-set (set v)]
+    (first (remove nil?
+                   (map #(when (contains? input-set (- target %))
+                          [% (- target %)])
+                        v)))))
 
 (defn find-triplet-equal-to-sum
   [v target]
-  (let [input-set (into #{} v)]
-    (distinct
+  (let [input-set (set v)]
+    (first
       (for [x v
             y v
             :when (contains? input-set
                              (- target x y))]
-        (- target x y)))))
+        [x y (- target x y)]))))
 
 (defn -main
   [& args]
