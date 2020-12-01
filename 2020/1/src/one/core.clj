@@ -5,6 +5,8 @@
 
 (def target 2020)
 
+(def input-file "resources/input.txt")
+
 (defn find-pair-equal-to-sum
   [v target]
   (let [input-set (into #{} v)]
@@ -24,7 +26,7 @@
 
 (defn -main
   [& args]
-  (let [input   (mapv read-string (string/split (slurp "resources/input.txt") #"\n"))
+  (let [input   (mapv read-string (string/split (slurp input-file) #"\n"))
         pair    (find-pair-equal-to-sum input target)
         triplet (find-triplet-equal-to-sum input target)]
     (println "Part one")
