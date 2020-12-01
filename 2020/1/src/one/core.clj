@@ -4,7 +4,6 @@
             [clojure.pprint :as pprint]))
 
 (def target 2020)
-
 (def input-file "resources/input.txt")
 
 (defn find-pair-equal-to-sum
