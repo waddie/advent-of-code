@@ -9,10 +9,11 @@
 (defn find-pair-equal-to-sum
   [v target]
   (let [input-set (set v)]
-    (first (remove nil?
-                   (map #(when (contains? input-set (- target %))
-                          [% (- target %)])
-                        v)))))
+    (first
+      (for [x v
+            :when (contains? input-set
+                             (- target x))]
+        [x (- target x)]))))
 
 (defn find-triplet-equal-to-sum
   [v target]
