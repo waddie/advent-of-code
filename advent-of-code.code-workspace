@@ -12,20 +12,21 @@
     "editor.detectIndentation": false,
     "editor.formatOnSave": true,
     "workbench.colorCustomizations": {
-      "activityBar.background": "#b2a1b3",
-      "activityBar.activeBorder": "#787328",
+      "activityBar.background": "#a5b088",
+      "activityBar.activeBorder": "#ecf1f2",
       "activityBar.foreground": "#15202b",
       "activityBar.inactiveForeground": "#15202b99",
-      "activityBarBadge.background": "#787328",
-      "activityBarBadge.foreground": "#e7e7e7",
-      "titleBar.activeBackground": "#9b859c",
-      "titleBar.inactiveBackground": "#9b859c99",
+      "activityBarBadge.background": "#ecf1f2",
+      "activityBarBadge.foreground": "#15202b",
+      "titleBar.activeBackground": "#8e9c69",
+      "titleBar.inactiveBackground": "#8e9c6999",
       "titleBar.activeForeground": "#15202b",
       "titleBar.inactiveForeground": "#15202b99",
-      "statusBar.background": "#9b859c",
-      "statusBarItem.hoverBackground": "#826b83",
-      "statusBar.foreground": "#15202b"
+      "statusBar.background": "#8e9c69",
+      "statusBarItem.hoverBackground": "#737e53",
+      "statusBar.foreground": "#15202b",
+      "activityBar.activeBackground": "#a5b088"
     },
-    "peacock.color": "#9b859c"
+    "peacock.color": "#8e9c69"
   }
 }
