@@ -3,7 +3,7 @@
   (:require [clojure.string :as string]
             [clojure.pprint :as pprint]))
 
-(def target 2020)
+(def target-number 2020)
 (def input-file "resources/input.txt")
 
 (defn find-pair-equal-to-sum
@@ -26,8 +26,8 @@
 (defn -main
   [& args]
   (let [input   (mapv read-string (string/split (slurp input-file) #"\n"))
-        pair    (find-pair-equal-to-sum input target)
-        triplet (find-triplet-equal-to-sum input target)]
+        pair    (find-pair-equal-to-sum input target-number)
+        triplet (find-triplet-equal-to-sum input target-number)]
     (println "Part one")
     (print "Pair: ") (pprint/pprint pair)
     (println "Answer:" (reduce * pair) "\n")
