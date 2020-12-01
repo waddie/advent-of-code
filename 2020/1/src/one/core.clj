@@ -19,8 +19,9 @@
   (first (for [x v
                y v
                :let [input-set (set v)]
-               :when (contains? input-set
-                                (- target x y))]
+               :when (and (not= x y)
+                          (contains? input-set
+                                     (- target x y)))]
            [x y (- target x y)])))
 
 (defn -main
