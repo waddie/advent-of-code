@@ -27,13 +27,10 @@
   (let [input   (mapv read-string (string/split (slurp "resources/input.txt") #"\n"))
         pair    (find-pair-equal-to-sum input target)
         triplet (find-triplet-equal-to-sum input target)]
-
     (println "Part one")
-    (print "Pair: ")
-    (pprint/pprint pair)
+    (print "Pair: ") (pprint/pprint pair)
     (println "Answer:" (reduce * pair) "\n")
 
     (println "Part two")
-    (print "Triplet: ")
-    (pprint/pprint triplet)
+    (print "Triplet: ") (pprint/pprint triplet)
     (println "Answer:" (reduce * triplet))))
