@@ -26,20 +26,12 @@
 
 (defn valid-password?
   [password policy]
-  (let [chars        (string/split password #"")
-        valid-char   (:char policy)
-        first-char   (get chars (dec (:first policy)))
-        second-char  (get chars (dec (:second policy)))
-        first-match  (and (= valid-char
-                             first-char)
-                          (not= valid-char
-                                second-char))
-        second-match (and (not= valid-char
-                                first-char)
-                          (= valid-char
-                             second-char))]
-    (or first-match
-        second-match)))
+  (let [all-chars      (string/split password #"")
+        relevant-chars [(get all-chars (dec (:first policy)))
+                        (get all-chars (dec (:second policy)))]]
+    (= 1
+       (count (filter #(= (:char policy) %)
+                      relevant-chars)))))
 
 (defn valid-passwords
   [v validator]
