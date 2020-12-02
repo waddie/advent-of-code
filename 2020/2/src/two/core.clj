@@ -1,7 +1,6 @@
 (ns two.core
   (:gen-class)
   (:require [clojure.string :as string]
-            [clojure.pprint :as pprint]
             [clojure.edn :as edn]))
 
 (def input-file "resources/input.txt")
