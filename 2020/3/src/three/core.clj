@@ -30,7 +30,7 @@
 (defn- new-y
   "Resolve new y coordinate."
   [ypos next-step]
-  (if (= :y next-step)   ; if next step is move down, inc y
+  (if (= :y next-step) ; if next step is move down, inc y
     (inc ypos)
     ypos))
 
@@ -47,7 +47,7 @@
            trees 0]
       (if (= destination-y ypos)
         (+ trees (coordinate-value trees-map xpos ypos))
-        (let [next-step-index (if (= step (dec steps))  ; if at end of plan, wrap around
+        (let [next-step-index (if (= step (dec steps)) ; if at end of plan, wrap around
                                 0
                                 (inc step))
               next-step       (nth plan next-step-index)]
