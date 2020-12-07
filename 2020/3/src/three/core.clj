@@ -6,16 +6,20 @@
 (def input-file "resources/input.txt")
 
 (defn process-trees-map
+  "Convert vector of map rows into a vector of vectors, where open ground = 0
+   and trees = 1."
   [trees]
   (mapv (fn [line] (mapv (fn [char] (if (= "#" char) 1 0))
                          (string/split line #"")))
         trees))
 
 (defn- coordinate-value
+  "Get value at current x:y coordinates."
   [trees-map x y]
   (nth (nth trees-map y) x))
 
 (defn- new-x
+  "Resolve new x coordinate, wrap around if at end of row vector."
   [count-x xpos next-step]
   (match/match [(= :x next-step)
                 (= count-x xpos)]
@@ -24,12 +28,14 @@
     [false _]     xpos))
 
 (defn- new-y
+  "Resolve new y coordinate."
   [ypos next-step]
   (if (= :y next-step)   ; if next step is move down, inc y
     (inc ypos)
     ypos))
 
 (defn toboggan
+  "Execute a slope plan against a map."
   [trees-map plan]
   (let [destination-y (dec (count trees-map))
         count-x       (dec (count (last trees-map)))
